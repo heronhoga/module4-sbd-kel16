@@ -33,9 +33,10 @@ public class MahasiswaController {
 
     @PostMapping("/add")
     public String add(Mahasiswa mahasiswa) {
-        String sql = "INSERT INTO mahasiswa VALUES(?,?,?,?)";
+        String sql = "INSERT INTO mahasiswa VALUES(?,?,?,?,?,?)";
         jdbcTemplate.update(sql, mahasiswa.getNim(),
-                mahasiswa.getNama(), mahasiswa.getAngkatan(), mahasiswa.getGender());
+                mahasiswa.getNama(), mahasiswa.getAngkatan(), mahasiswa.getGender(),
+                mahasiswa.getAsaldaerah(), mahasiswa.getNomor());
         return "redirect:/";
     }
 
@@ -49,8 +50,9 @@ public class MahasiswaController {
 
     @PostMapping("/edit")
     public String edit(Mahasiswa mahasiswa) {
-        String sql = "UPDATE mahasiswa SET nama = ?, angkatan = ?, gender = ? WHERE nim = ?";
-        jdbcTemplate.update(sql, mahasiswa.getNama(), mahasiswa.getAngkatan(), mahasiswa.getGender(), mahasiswa.getNim());
+        String sql = "UPDATE mahasiswa SET nama = ?, angkatan = ?, gender = ?, asaldaerah = ?, nomor = ? WHERE nim = ?";
+        jdbcTemplate.update(sql, mahasiswa.getNama(), mahasiswa.getAngkatan(), mahasiswa.getGender(),
+        mahasiswa.getAsaldaerah(), mahasiswa.getNomor(), mahasiswa.getNim());
 
         return "redirect:/";
     }
@@ -62,5 +64,13 @@ public class MahasiswaController {
         return "redirect:/";
     }
 
+    //DETAIL PAGE
+    @GetMapping("/detail/{nim}")
+    public String detail(@PathVariable("nim") String nim, Model model) {
+        String sql = "SELECT * FROM mahasiswa WHERE nim = ?";
+        Mahasiswa mahasiswa = jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Mahasiswa.class), nim);
+        model.addAttribute("mahasiswa", mahasiswa);
+        return "detail";
+    }
 
 }

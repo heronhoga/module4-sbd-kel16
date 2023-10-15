@@ -31,6 +31,8 @@ LPMO" crossorigin="anonymous" />
           <th scope="col">Nama</th>
           <th scope="col">Angkatan</th>
           <th scope="col">Gender</th>
+          <th scope="col">Asal Daerah</th>
+          <th scope="col">Nomor Telfon</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -39,9 +41,12 @@ LPMO" crossorigin="anonymous" />
           <td th:text="${mhs.nama}"></td>
           <td th:text="${mhs.angkatan}"></td>
           <td th:text="${mhs.gender}"></td>
+          <td th:text="${mhs.asaldaerah}"></td>
+          <td th:text="${mhs.nomor}"></td>
 
 
           <td>
+           <a th:href="@{/detail/{nim}(nim=${mhs.nim})}" class="btn btn-info">Lihat Detail</a>
            <a th:href="@{/edit/{nim}(nim=${mhs.nim})}" class="btn btn-primary">Edit</a>
            <a th:href="@{/delete/{nim}(nim=${mhs.nim})}" class="btn btn-danger">Delete</a>
          </td>

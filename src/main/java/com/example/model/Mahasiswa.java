@@ -7,8 +7,32 @@ public class Mahasiswa {
     private String nama;
     private String angkatan;
     private String gender;
+
+    //NAMBAH
+    private String asaldaerah;
+    private String nomor;
     
     // ! Setter dan Getter Properties
+
+    //ASAL DAERAH DAN NOMOR TELEPON
+    public String getAsaldaerah() {
+        return asaldaerah;
+    }
+
+    public void setAsaldaerah(String asaldaerah) {
+        this.asaldaerah = asaldaerah;
+    }
+
+    public String getNomor() {
+        return nomor;
+    }
+
+    public void setNomor(String nomor) {
+        this.nomor = nomor;
+    }
+
+    //------------------------------
+
     public String getNama() {
         return nama;
     }
